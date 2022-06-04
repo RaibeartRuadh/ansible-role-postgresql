@@ -1,4 +1,4 @@
 # ansible-role-postgresql
-Basic Postgresql role for CentOS on ansible
+Custom Basic Postgresql role for CentOS 7
 
 #
