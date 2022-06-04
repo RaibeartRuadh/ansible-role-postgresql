@@ -1,0 +1,48 @@
+---
+postgresql_enablerepo: ""
+postgresql_restarted_state: "restarted"
+postgresql_python_library: python-psycopg2
+postgresql_user: postgres
+postgresql_group: postgres
+postgresql_auth_method: "{{ ansible_fips  | ternary('scram-sha-256', 'md5') }}"
+postgresql_unix_socket_directories:
+  - /var/run/postgresql
+postgresql_service_state: started
+postgresql_service_enabled: true
+postgres_users_no_log: true
+postgresql_global_config_options:
+  - option: unix_socket_directories
+    value: '{{ postgresql_unix_socket_directories | join(",") }}'
+
+postgresql_hba_entries:
+  - {type: local, database: all, user: postgres, auth_method: peer}
+  - {type: local, database: all, user: all, auth_method: peer}
+  - {type: host, database: all, user: all, address: '127.0.0.1/32', auth_method: "{{ postgresql_auth_method }}"}
+  - {type: host, database: all, user: all, address: '::1/128', auth_method: "{{ postgresql_auth_method }}"}
+
+postgresql_databases: []
+  - name: mybase # required; the rest are optional
+    lc_collate: 'ru_RU.UTF-8'
+    lc_ctype: 'ru_RU.UTF-8'
+    encoding: 'UTF-8'
+    template: 'template0'
+    login_host: 'localhost'
+    login_user: # defaults to '{{ postgresql_user }}'	
+    login_password: 'master'
+    port: 5432
+#    owner: # defaults to postgresql_user
+    state: 'present'
+
+# Users to ensure exist.
+postgresql_users: []
+  - name: 'master'
+    password: 'master'
+    login_host: 'localhost'
+    login_password: 'master'
+    login_user: '{{ postgresql_user }}'
+    port: 5432
+    state: 'present'
+
+
+
+
