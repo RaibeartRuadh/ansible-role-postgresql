@@ -1,5 +1,5 @@
 ---
-- name: DB Setting
+- name: Параметры базы, если не указаны, то по-умолчанию
   postgresql_db:
     name: "{{ item.name }}"
     lc_collate: "{{ item.lc_collate | default('en_US.UTF-8') }}"

@@ -1,5 +1,5 @@
 ---
-- name: Ensure PostgreSQL users are configured correctly.
+- name: Проверка конфигурации пользователей PostgreSQL
   postgresql_user:
     name: "{{ item.name }}"
     password: "{{ item.password | default(omit) }}"
