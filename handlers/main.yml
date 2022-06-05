@@ -3,4 +3,4 @@
   service:
     name: "{{ postgresql_daemon }}"
     state: "{{ postgresql_restarted_state }}"
-    sleep: 10
+    #sleep: 10
