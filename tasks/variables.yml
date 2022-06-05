@@ -1,5 +1,7 @@
 ---
 
+# Обозначение переменных
+# 
 - name: Variables RedHat7.
   include_vars: "redhat7.yml"
 
