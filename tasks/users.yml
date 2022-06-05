@@ -1,5 +1,5 @@
 ---
-- name: Ensure PostgreSQL users are present.
+- name: Параметры пользователя PostgreSQL
   postgresql_user:
     name: "{{ item.name }}"
     password: "{{ item.password | default(omit) }}"

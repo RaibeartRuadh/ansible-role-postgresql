@@ -21,28 +21,9 @@ postgresql_hba_entries:
   - {type: host, database: all, user: all, address: '::1/128', auth_method: "{{ postgresql_auth_method }}"}
 
 postgresql_databases: []
-  - name: mybase # required; the rest are optional
-    lc_collate: 'ru_RU.UTF-8'
-    lc_ctype: 'ru_RU.UTF-8'
-    encoding: 'UTF-8'
-    template: 'template0'
-    login_host: 'localhost'
-    login_user: # defaults to '{{ postgresql_user }}'	
-    login_password: 'master'
-    port: 5432
-#    owner: # defaults to postgresql_user
-    state: 'present'
-
-# Users to ensure exist.
+# future options
 postgresql_users: []
-  - name: 'master'
-    password: 'master'
-    login_host: 'localhost'
-    login_password: 'master'
-    login_user: '{{ postgresql_user }}'
-    port: 5432
-    state: 'present'
-
+# future options
 
 
 
